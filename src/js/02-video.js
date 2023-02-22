@@ -4,9 +4,9 @@ import throttle from 'lodash.throttle';
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
 
-const setSavedCurrentTime = function(savedCurrentTime, playerInstance) {
+const setSavedCurrentTime = function (savedCurrentTime, playerInstance) {
   playerInstance.setCurrentTime(savedCurrentTime).then(function (seconds) {
-  console.log('Playing from saved time: ', seconds)
+    console.log('Playing from saved time: ', seconds)
   }).catch(function (error) {
     switch (error.name) {
       case 'RangeError':
