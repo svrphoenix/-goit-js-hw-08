@@ -39,11 +39,20 @@ const onFormInput = function () {
 const onFormSubmit = function (event) {
   event.preventDefault();
   const userData = getData();
-  localStorage.removeItem(FEEDBACK_STORAGE_KEY);
-  console.log(userData);
-  event.currentTarget.reset();
+  if (!userData) {
+    alert('Введіть дані у форму!');
+    return
+  }
+  const { email, message } = userData;
+  if (email === '' || message === '') {
+    alert('Усі поля форми повинні бути заповнені!');
+  } else {
+    localStorage.removeItem(FEEDBACK_STORAGE_KEY);
+    console.log(userData);
+    event.currentTarget.reset();
+  }
 }
 
-document.addEventListener("DOMContentLoaded", onDocumentLoad);
+document.addEventListener('DOMContentLoaded', onDocumentLoad);
 refs.form.addEventListener('submit', onFormSubmit);
 refs.form.addEventListener('input', throttle(onFormInput, 500));
