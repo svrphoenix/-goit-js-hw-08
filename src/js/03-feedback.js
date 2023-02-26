@@ -27,6 +27,7 @@ const onDocumentLoad = function () {
     refs.email.value = userData.email;
     refs.message.value = userData.message;
   }
+  document.removeEventListener('DOMContentLoaded', onDocumentLoad);
 }
 
 const onFormInput = function () {
