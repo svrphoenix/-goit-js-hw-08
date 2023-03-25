@@ -4,7 +4,7 @@
   "description": "",
   "homepage": "https://github.com/svrphoenix/goit-js-hw-08",
   "scripts": {
-    "start": "parcel src/*.html -p 8889 --open",
+    "start": "parcel src/*.html -p 8880 --open",
     "build": "parcel build src/*.html --public-url /goit-js-hw-08/"
   },
   "repository": {

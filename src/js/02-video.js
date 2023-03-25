@@ -5,10 +5,11 @@ const STORAGE_KEY = 'videoplayer-current-time';
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
 
-const setSavedCurrentTime = function (savedCurrentTime, playerInstance) {
-  playerInstance.setCurrentTime(savedCurrentTime).then(function (seconds) {
+// функція для встановлення збереженого часу  плеєра та обробки помилок 
+const setSavedCurrentTime = (savedCurrentTime, playerInstance) => {
+  playerInstance.setCurrentTime(savedCurrentTime).then((seconds) => {
     console.log('Playing from saved time: ', seconds)
-  }).catch(function (error) {
+  }).catch((error) => {
     switch (error.name) {
       case 'RangeError':
         console.log('Range Error');
@@ -19,10 +20,8 @@ const setSavedCurrentTime = function (savedCurrentTime, playerInstance) {
     }
   })
 }
-
-const onTimeUpdate = function (currentTime) {
-  localStorage.setItem(STORAGE_KEY, currentTime.seconds);
-}
+//функція для збереження часу  плеєра
+const onTimeUpdate = (currentTime) => localStorage.setItem(STORAGE_KEY, currentTime.seconds);
 
 setSavedCurrentTime(localStorage.getItem(STORAGE_KEY), player);
 player.on('timeupdate', throttle(onTimeUpdate, 1000));
